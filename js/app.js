@@ -15,6 +15,7 @@ const winningConditions = [
 let board;
 let turn;
 let win;
+let aIXorO;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 
 ///////////////////// EVENT LISTENERS ///////////////////////////////
@@ -44,6 +45,7 @@ function init() {
   ];
   turn = "X";
   win = null;
+  stupidAIIsTrue = false;
   render();
 }
 function render() {
@@ -70,15 +72,13 @@ function takeTurn(e) {
       return square === e.target;
     });
     console.log(index);
-    if (board[index] === "" && turn === "O") {
+    if (board[index] === "" && turn !== aIXorO) {
       board[index] = turn;
       turn = turn === "X" ? "O" : "X";
       win = getWinner();
       render();
       stupidAI();
     }
-  }else{
-    stupidAIIsTrue = false;
   }
 }
 function stupidAI(){
@@ -90,6 +90,7 @@ function stupidAI(){
       console.log(index);
     }
     board[index] = turn;
+    aIXorO = turn;
     turn = turn === "X" ? "O" : "X";
     win = getWinner();
     render();
