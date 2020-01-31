@@ -102,8 +102,7 @@ function getBestMove(){
       return board[condition[2]];
     }else if(board[condition[0]] && board[condition[1]] === board[condition[0]]){
         return board[condition[0]];
-      }
-    )else if(board[condition[0]] === board[condition[2]]){
+    }else if(board[condition[0]] === board[condition[2]]){
       return board[condition[1]];
     }else{
       let index = getRandomIndex(board.length);
