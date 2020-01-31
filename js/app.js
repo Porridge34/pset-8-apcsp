@@ -84,17 +84,35 @@ function takeTurn(e) {
 function stupidAI(){
   stupidAIIsTrue = true;
   if (!win) {
-    let index = 0;
-    while(board[index] !== ""){
-      index = getRandomIndex(board.length);
-      console.log(index);
-    }
+    let index = getBestMove();
+    console.log(index);
     board[index] = turn;
     aIXorO = turn;
     turn = turn === "X" ? "O" : "X";
     win = getWinner();
     render();
   }
+}
+function getBestMove(){
+  winningConditions.forEach(function(condition, index) {
+    if (
+      board[condition[0]] &&
+      board[condition[0]] === board[condition[1]]
+    ) {
+      return board[condition[2]];
+    }else if(board[condition[0]] && board[condition[1]] === board[condition[0]]){
+        return board[condition[0]];
+      }
+    )else if(board[condition[0]] === board[condition[2]]){
+      return board[condition[1]];
+    }else{
+      let index = getRandomIndex(board.length);
+      while(board[index] !== ""){
+        index = getRandomIndex(board.length);
+      }
+      return index;
+    }
+  });
 }
 function getRandomIndex(max) {
   return Math.floor(Math.random() * Math.floor(max));
