@@ -60,7 +60,6 @@ function takeTurn(e) {
     let index = squares.findIndex(function(square) {
       return square === e.target;
     });
-    console.log(index);
     if (board[index] === "") {
       board[index] = turn;
       turn = turn === "X" ? "O" : "X";
@@ -71,7 +70,6 @@ function takeTurn(e) {
     let index = squares.findIndex(function(square) {
       return square === e.target;
     });
-    console.log(index);
     if (board[index] === "" && turn !== aIXorO) {
       board[index] = turn;
       turn = turn === "X" ? "O" : "X";
@@ -85,7 +83,6 @@ function stupidAI(){
   stupidAIIsTrue = true;
   if (!win) {
     let index = getBestMove();
-    console.log(index);
     board[index] = turn;
     aIXorO = turn;
     turn = turn === "X" ? "O" : "X";
@@ -94,24 +91,23 @@ function stupidAI(){
   }
 }
 function getBestMove(){
+  let index2 = getRandomIndex(board.length);
+  while(board[index2] !== ""){
+    index2 = getRandomIndex(board.length);
+  }
   winningConditions.forEach(function(condition, index) {
-    if (
-      board[condition[0]] &&
-      board[condition[0]] === board[condition[1]]
-    ) {
-      return board[condition[2]];
-    }else if(board[condition[0]] && board[condition[1]] === board[condition[0]]){
-        return board[condition[0]];
-    }else if(board[condition[0]] === board[condition[2]]){
-      return board[condition[1]];
-    }else{
-      let index = getRandomIndex(board.length);
-      while(board[index] !== ""){
-        index = getRandomIndex(board.length);
-      }
-      return index;
+    if (board[condition[0]] && board[condition[0]] === board[condition[1]]
+    && !board[condition[2]]){
+      index2 = condition[2];
+    }else if(board[condition[1]] && board[condition[1]] === board[condition[2]]
+    && !board[condition[0]]){
+      index2 = condition[0];
+    }else if(board[condition[0]] && board[condition[0]] === board[condition[2]]
+    && !board[condition[1]]){
+      index2 = condition[1];
     }
   });
+  return index2;
 }
 function getRandomIndex(max) {
   return Math.floor(Math.random() * Math.floor(max));
