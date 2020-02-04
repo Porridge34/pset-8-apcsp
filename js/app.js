@@ -112,27 +112,3 @@ function getBestMove(){
 function getRandomIndex(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
-//i need unique commits
